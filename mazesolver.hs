@@ -54,7 +54,7 @@ complexMaze =
      [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Exit, Wall],
      [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
 
--- Poboljšana reprezentacija ćelija (bez emodžija)
+-- Reprezentacija ćelija
 renderCell :: Cell -> String
 renderCell Wall = "##"
 renderCell Empty = "  "
@@ -62,7 +62,7 @@ renderCell Start = "S "
 renderCell Exit = "E "
 renderCell Path = "oo"
 
--- Poboljšana funkcija za prikaz lavirinta
+-- Funkcija za prikaz lavirinta
 renderMaze :: Maze -> String
 renderMaze maze = intercalate "\n" $ map renderRow maze
   where
@@ -82,7 +82,7 @@ isValidPosition :: Position -> Int -> Int -> Bool
 isValidPosition (x, y) width height =
     x >= 0 && x < width && y >= 0 && y < height
 
--- BFS algoritam za rešavanje
+-- BFS algoritam za rješavanje
 solveBFS :: Maze -> Maybe [Position]
 solveBFS maze = 
     let start = findStart maze
@@ -118,7 +118,7 @@ solveBFS maze =
             getCell pos maze /= Wall &&
             not (Set.member pos visited)) neighbors
 
--- DFS algoritam (alternativa)
+-- DFS algoritam za rješavanje
 solveDFS :: Maze -> Maybe [Position]
 solveDFS maze = 
     let start = findStart maze
@@ -154,7 +154,7 @@ solveDFS maze =
             getCell pos maze /= Wall &&
             not (Set.member pos visited)) neighbors
 
--- Vizualizacija rešenja
+-- Vizualizacija rješenja
 renderSolution :: Maze -> [Position] -> String
 renderSolution maze path = 
     let mazeWithPath = foldl (\m pos -> setCell pos Path m) maze path
@@ -168,7 +168,7 @@ chooseMaze = do
             putStrLn "1. Jednostavan"
             putStrLn "2. Srednji"
             putStrLn "3. Kompleksan"
-            putStr "Vas izbor (1-3): "
+            putStr "Vaš izbor (1-3): "
             hFlush stdout
             choice <- getLine
             case choice of
@@ -176,7 +176,7 @@ chooseMaze = do
                 "2" -> return mediumMaze
                 "3" -> return complexMaze
                 _ -> do
-                    putStrLn "Nevazeći izbor, pokušajte ponovo."
+                    putStrLn "Nevažeći izbor, pokušajte ponovo."
                     loop
     loop
 
@@ -185,16 +185,16 @@ chooseAlgorithm :: IO (String, Maze -> Maybe [Position])
 chooseAlgorithm = do
     let loop = do
             putStrLn "Izaberite algoritam:"
-            putStrLn "1. BFS (sirina prvo)"
+            putStrLn "1. BFS (širina prvo)"
             putStrLn "2. DFS (dubina prvo)"
-            putStr "Vas izbor (1-2): "
+            putStr "Vaš izbor (1-2): "
             hFlush stdout
             choice <- getLine
             case choice of
                 "1" -> return ("BFS", solveBFS)
                 "2" -> return ("DFS", solveDFS)
                 _ -> do
-                    putStrLn "Nevazeci izbor, pokušajte ponovo."
+                    putStrLn "Nevažeći izbor, pokušajte ponovo."
                     loop
     loop
 
@@ -215,33 +215,33 @@ main = do
     -- Izaberi algoritam
     (algorithmName, solver) <- chooseAlgorithm
     
-    putStrLn $ "\nTrazim put pomocu " ++ algorithmName ++ " algoritma..."
+    putStrLn $ "\nTražim put pomoću " ++ algorithmName ++ " algoritma..."
     case solver selectedMaze of
         Just path -> do
             putStrLn "╔══════════════════════════╗"
-            putStrLn "║       Put pronadjen!      ║"
+            putStrLn "║       Put pronađen!      ║"
             putStrLn "╚══════════════════════════╝"
-            putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka"
-            putStrLn "\nRjesenje:"
+            putStrLn $ "Dužina puta: " ++ show (length path) ++ " koraka"
+            putStrLn "\nRješenje:"
             putStrLn $ renderSolution selectedMaze path
         
         Nothing -> do
-            putStrLn $ algorithmName ++ " nije pronasao put!"
-            putStrLn "Pokusavam drugi algoritam..."
+            putStrLn $ algorithmName ++ " nije pronašao put!"
+            putStrLn "Pokušavam drugi algoritam..."
             let otherSolver = if algorithmName == "BFS" then solveDFS else solveBFS
             let otherAlgorithmName = if algorithmName == "BFS" then "DFS" else "BFS"
             case otherSolver selectedMaze of
                 Just path -> do
                     putStrLn "╔══════════════════════════╗"
-                    putStrLn "║       Put pronadjen!      ║"
+                    putStrLn "║       Put pronađen!      ║"
                     putStrLn "╚══════════════════════════╝"
-                    putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka (" ++ otherAlgorithmName ++ ")"
-                    putStrLn "\nRešenje:"
+                    putStrLn $ "Dužina puta: " ++ show (length path) ++ " koraka (" ++ otherAlgorithmName ++ ")"
+                    putStrLn "\nRješenje:"
                     putStrLn $ renderSolution selectedMaze path
-                Nothing -> putStrLn "Nema rijesenja ni sa drugim algoritmom!"
+                Nothing -> putStrLn "Nema rješenja ni sa drugim algoritmom!"
 
-    -- Pause so that when running the .exe by double-clicking the console
-    -- window doesn't close immediately. User must press Enter to exit.
+    -- Pauza u izvršenju tako da se .exe file ne zatvori odmah
+    -- po izboru algoritma, kako bi korisnik mogao vidjeti rezultat
     putStrLn "\nPritisnite Enter za izlaz..."
     _ <- getLine
     return ()

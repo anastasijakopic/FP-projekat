@@ -163,36 +163,40 @@ renderSolution maze path =
 -- Meni za izbor lavirinta
 chooseMaze :: IO Maze
 chooseMaze = do
-    putStrLn "Izaberite lavirint:"
-    putStrLn "1. Jednostavan"
-    putStrLn "2. Srednji"
-    putStrLn "3. Kompleksan"
-    putStr "Vas izbor (1-3): "
-    hFlush stdout
-    choice <- getLine
-    case choice of
-        "1" -> return simpleMaze
-        "2" -> return mediumMaze
-        "3" -> return complexMaze
-        _ -> do
-            putStrLn "Nevazeći izbor, biram jednostavan lavirint"
-            return simpleMaze
+    let loop = do
+            putStrLn "Izaberite lavirint:"
+            putStrLn "1. Jednostavan"
+            putStrLn "2. Srednji"
+            putStrLn "3. Kompleksan"
+            putStr "Vas izbor (1-3): "
+            hFlush stdout
+            choice <- getLine
+            case choice of
+                "1" -> return simpleMaze
+                "2" -> return mediumMaze
+                "3" -> return complexMaze
+                _ -> do
+                    putStrLn "Nevazeći izbor, pokušajte ponovo."
+                    loop
+    loop
 
 -- Meni za izbor algoritma
 chooseAlgorithm :: IO (String, Maze -> Maybe [Position])
 chooseAlgorithm = do
-    putStrLn "Izaberite algoritam:"
-    putStrLn "1. BFS (sirina prvo)"
-    putStrLn "2. DFS (dubina prvo)"
-    putStr "Vas izbor (1-2): "
-    hFlush stdout
-    choice <- getLine
-    case choice of
-        "1" -> return ("BFS", solveBFS)
-        "2" -> return ("DFS", solveDFS)
-        _ -> do
-            putStrLn "Nevazeci izbor, biram BFS"
-            return ("BFS", solveBFS)
+    let loop = do
+            putStrLn "Izaberite algoritam:"
+            putStrLn "1. BFS (sirina prvo)"
+            putStrLn "2. DFS (dubina prvo)"
+            putStr "Vas izbor (1-2): "
+            hFlush stdout
+            choice <- getLine
+            case choice of
+                "1" -> return ("BFS", solveBFS)
+                "2" -> return ("DFS", solveDFS)
+                _ -> do
+                    putStrLn "Nevazeci izbor, pokušajte ponovo."
+                    loop
+    loop
 
 -- Glavna funkcija
 main :: IO ()
@@ -235,6 +239,12 @@ main = do
                     putStrLn "\nRešenje:"
                     putStrLn $ renderSolution selectedMaze path
                 Nothing -> putStrLn "Nema rijesenja ni sa drugim algoritmom!"
+
+    -- Pause so that when running the .exe by double-clicking the console
+    -- window doesn't close immediately. User must press Enter to exit.
+    putStrLn "\nPritisnite Enter za izlaz..."
+    _ <- getLine
+    return ()
 
 -- Funkcija za prikaz različitih lavirinata
 showAllMazes :: IO ()

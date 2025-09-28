@@ -115,21 +115,24 @@ complexMaze =
      [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Exit, Wall],
      [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
 
+
 complexMaze2 :: Maze
 complexMaze2 =
     [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
-     [Wall, Start, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Empty, Exit, Wall],
-     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
-     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall],
-     [Wall, Empty, Wall, Wall, Wall, Wall, Empty, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
-     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall],
-     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
-     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Start, Empty, Wall, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Exit, Wall],
+     [Wall, Empty, Empty, Wall, Empty, Wall, Wall, Wall, Empty, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Wall, Empty, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Empty, Wall, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
      [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
-     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
-     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
-     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
      [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+
 
 complexMazeNoExit :: Maze
 complexMazeNoExit =

@@ -10,6 +10,7 @@ data Cell = Wall | Empty | Start | Exit | Path
     deriving (Eq, Show)
 
 -- Predefinisani lavirinti
+-- JEDNOSTAVNI
 simpleMaze :: Maze
 simpleMaze =
     [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
@@ -24,6 +25,36 @@ simpleMaze =
      [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Exit, Wall],
      [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
 
+simpleMaze2 :: Maze
+simpleMaze2 =
+    [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Start, Empty, Empty, Empty, Empty, Wall, Empty, Exit, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall, Wall],
+     [Wall, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Empty, Wall, Empty, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+simpleMazeNoExit :: Maze
+simpleMazeNoExit =
+    [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Start, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+-- SREDNJI
+
 mediumMaze :: Maze
 mediumMaze =
     [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
@@ -37,6 +68,36 @@ mediumMaze =
      [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall, Empty, Wall],
      [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Exit, Wall],
      [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+mediumMaze2 :: Maze
+mediumMaze2 =
+    [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Start, Empty, Empty, Wall, Empty, Empty, Empty, Empty, Empty, Exit, Wall],
+     [Wall, Wall, Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+mediumMazeNoExit :: Maze
+mediumMazeNoExit =
+    [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Start, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+-- KOMPLEKSNI     
 
 complexMaze :: Maze
 complexMaze =
@@ -54,7 +115,49 @@ complexMaze =
      [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Exit, Wall],
      [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
 
--- Poboljšana reprezentacija ćelija (bez emodžija)
+complexMaze2 :: Maze
+complexMaze2 =
+    [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Start, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Empty, Exit, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Empty, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+complexMazeNoExit :: Maze
+complexMazeNoExit =
+    [[Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
+     [Wall, Start, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Empty, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall],
+     [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Empty, Wall, Empty, Wall],
+     [Wall, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Wall, Empty, Wall],
+     [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]]
+
+-- LISTE LAVIRINATA PO TEŽINI
+easyMazes :: [Maze]
+easyMazes = [simpleMaze, simpleMaze2, simpleMazeNoExit]
+
+mediumMazes :: [Maze]
+mediumMazes = [mediumMaze, mediumMaze2, mediumMazeNoExit]
+
+hardMazes :: [Maze]
+hardMazes = [complexMaze, complexMaze2, complexMazeNoExit]
+
+-- Reprezentacija ćelija
 renderCell :: Cell -> String
 renderCell Wall = "##"
 renderCell Empty = "  "
@@ -62,7 +165,7 @@ renderCell Start = "S "
 renderCell Exit = "E "
 renderCell Path = "oo"
 
--- Poboljšana funkcija za prikaz lavirinta
+-- Funkcija za prikaz lavirinta
 renderMaze :: Maze -> String
 renderMaze maze = intercalate "\n" $ map renderRow maze
   where
@@ -82,7 +185,7 @@ isValidPosition :: Position -> Int -> Int -> Bool
 isValidPosition (x, y) width height =
     x >= 0 && x < width && y >= 0 && y < height
 
--- BFS algoritam za rešavanje
+-- BFS algoritam za rješavanje
 solveBFS :: Maze -> Maybe [Position]
 solveBFS maze = 
     let start = findStart maze
@@ -118,7 +221,7 @@ solveBFS maze =
             getCell pos maze /= Wall &&
             not (Set.member pos visited)) neighbors
 
--- DFS algoritam (alternativa)
+-- DFS algoritam
 solveDFS :: Maze -> Maybe [Position]
 solveDFS maze = 
     let start = findStart maze
@@ -154,7 +257,7 @@ solveDFS maze =
             getCell pos maze /= Wall &&
             not (Set.member pos visited)) neighbors
 
--- Vizualizacija rešenja
+-- Vizualizacija rješenja
 renderSolution :: Maze -> [Position] -> String
 renderSolution maze path = 
     let mazeWithPath = foldl (\m pos -> setCell pos Path m) maze path
@@ -163,36 +266,53 @@ renderSolution maze path =
 -- Meni za izbor lavirinta
 chooseMaze :: IO Maze
 chooseMaze = do
-    putStrLn "Izaberite lavirint:"
-    putStrLn "1. Jednostavan"
-    putStrLn "2. Srednji"
-    putStrLn "3. Kompleksan"
-    putStr "Vas izbor (1-3): "
+    let loop = do
+            putStrLn "Izaberite lavirint:"
+            putStrLn "1. Jednostavan"
+            putStrLn "2. Srednji"
+            putStrLn "3. Kompleksan"
+            putStr "Vas izbor (1-3): "
+            hFlush stdout
+            choice <- getLine
+            case choice of
+                "1" -> chooseFromList easyMazes "Jednostavni"
+                "2" -> chooseFromList mediumMazes "Srednji"
+                "3" -> chooseFromList hardMazes "Kompleksni"
+                _   -> do
+                    putStrLn "Nevazeci izbor, pokusajte ponovo."
+                    loop
+    loop
+
+chooseFromList :: [Maze] -> String -> IO Maze
+chooseFromList mazes label = do
+    putStrLn $ "Izaberite jedan od " ++ label ++ "h" ++ " lavirinata:"
+    mapM_ (\(i,_) -> putStrLn (show i ++ ". Lavirint " ++ show i)) (zip [1..] mazes)
+    putStr "Vas izbor: "
     hFlush stdout
-    choice <- getLine
-    case choice of
-        "1" -> return simpleMaze
-        "2" -> return mediumMaze
-        "3" -> return complexMaze
+    c <- getLine
+    case reads c of
+        [(n, "")] | n >= 1 && n <= length mazes -> return (mazes !! (n-1))
         _ -> do
-            putStrLn "Nevazeći izbor, biram jednostavan lavirint"
-            return simpleMaze
+            putStrLn "Nevazeci izbor, pokusajte ponovo."
+            chooseFromList mazes label
 
 -- Meni za izbor algoritma
 chooseAlgorithm :: IO (String, Maze -> Maybe [Position])
 chooseAlgorithm = do
-    putStrLn "Izaberite algoritam:"
-    putStrLn "1. BFS (sirina prvo)"
-    putStrLn "2. DFS (dubina prvo)"
-    putStr "Vas izbor (1-2): "
-    hFlush stdout
-    choice <- getLine
-    case choice of
-        "1" -> return ("BFS", solveBFS)
-        "2" -> return ("DFS", solveDFS)
-        _ -> do
-            putStrLn "Nevazeci izbor, biram BFS"
-            return ("BFS", solveBFS)
+    let loop = do
+            putStrLn "Izaberite algoritam:"
+            putStrLn "1. BFS (sirina prvo)"
+            putStrLn "2. DFS (dubina prvo)"
+            putStr "Vas izbor (1-2): "
+            hFlush stdout
+            choice <- getLine
+            case choice of
+                "1" -> return ("BFS", solveBFS)
+                "2" -> return ("DFS", solveDFS)
+                _ -> do
+                    putStrLn "Nevazeci izbor, pokušajte ponovo."
+                    loop
+    loop
 
 -- Glavna funkcija
 main :: IO ()
@@ -215,7 +335,7 @@ main = do
     case solver selectedMaze of
         Just path -> do
             putStrLn "╔══════════════════════════╗"
-            putStrLn "║       Put pronadjen!      ║"
+            putStrLn "║       Put pronadjen!     ║"
             putStrLn "╚══════════════════════════╝"
             putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka"
             putStrLn "\nRjesenje:"
@@ -229,12 +349,18 @@ main = do
             case otherSolver selectedMaze of
                 Just path -> do
                     putStrLn "╔══════════════════════════╗"
-                    putStrLn "║       Put pronadjen!      ║"
+                    putStrLn "║       Put pronadjen!     ║"
                     putStrLn "╚══════════════════════════╝"
                     putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka (" ++ otherAlgorithmName ++ ")"
-                    putStrLn "\nRešenje:"
+                    putStrLn "\nRješenje:"
                     putStrLn $ renderSolution selectedMaze path
-                Nothing -> putStrLn "Nema rijesenja ni sa drugim algoritmom!"
+                Nothing -> putStrLn "Nema rjesenja ni sa drugim algoritmom!"
+
+    -- Pause so that when running the .exe by double-clicking the console
+    -- window doesn't close immediately. User must press Enter to exit.
+    putStrLn "\nPritisnite Enter za izlaz..."
+    _ <- getLine
+    return ()
 
 -- Funkcija za prikaz različitih lavirinata
 showAllMazes :: IO ()

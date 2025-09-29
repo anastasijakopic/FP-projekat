@@ -317,50 +317,52 @@ chooseAlgorithm = do
 -- Glavna funkcija
 main :: IO ()
 main = do
-    putStrLn "╔══════════════════════════╗"
-    putStrLn "║      Lavirint Solver     ║"
-    putStrLn "╚══════════════════════════╝"
-    putStrLn ""
-    
-    -- Izaberi lavirint
-    selectedMaze <- chooseMaze
-    
-    putStrLn "\nLavirint:"
-    putStrLn $ renderMaze selectedMaze
-    
-    -- Izaberi algoritam
-    (algorithmName, solver) <- chooseAlgorithm
-    
-    putStrLn $ "\nTrazim put pomocu " ++ algorithmName ++ " algoritma..."
-    case solver selectedMaze of
-        Just path -> do
+    let loop = do
             putStrLn "╔══════════════════════════╗"
-            putStrLn "║       Put pronadjen!     ║"
+            putStrLn "║      Lavirint Solver     ║"
             putStrLn "╚══════════════════════════╝"
-            putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka"
-            putStrLn "\nRjesenje:"
-            putStrLn $ renderSolution selectedMaze path
-        
-        Nothing -> do
-            putStrLn $ algorithmName ++ " nije pronasao put!"
-            putStrLn "Pokusavam drugi algoritam..."
-            let otherSolver = if algorithmName == "BFS" then solveDFS else solveBFS
-            let otherAlgorithmName = if algorithmName == "BFS" then "DFS" else "BFS"
-            case otherSolver selectedMaze of
+            putStrLn ""
+    
+            -- Izaberi lavirint
+            selectedMaze <- chooseMaze
+    
+            putStrLn "\nLavirint:"
+            putStrLn $ renderMaze selectedMaze
+    
+            -- Izaberi algoritam
+            (algorithmName, solver) <- chooseAlgorithm
+    
+            putStrLn $ "\nTrazim put pomocu " ++ algorithmName ++ " algoritma..."
+            case solver selectedMaze of
                 Just path -> do
-                    putStrLn "╔══════════════════════════╗"
-                    putStrLn "║       Put pronadjen!     ║"
-                    putStrLn "╚══════════════════════════╝"
-                    putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka (" ++ otherAlgorithmName ++ ")"
-                    putStrLn "\nRješenje:"
-                    putStrLn $ renderSolution selectedMaze path
-                Nothing -> putStrLn "Nema rjesenja ni sa drugim algoritmom!"
+                        putStrLn "╔══════════════════════════╗"
+                        putStrLn "║       Put pronadjen!     ║"
+                        putStrLn "╚══════════════════════════╝"
+                        putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka"
+                        putStrLn "\nRjesenje:"
+                        putStrLn $ renderSolution selectedMaze path
+        
+                Nothing -> do
+                        putStrLn $ algorithmName ++ " nije pronasao put!"
+                        putStrLn "Pokusavam drugi algoritam..."
+                        let otherSolver = if algorithmName == "BFS" then solveDFS else solveBFS
+                        let otherAlgorithmName = if algorithmName == "BFS" then "DFS" else "BFS"
+                        case otherSolver selectedMaze of
+                            Just path -> do
+                                    putStrLn "╔══════════════════════════╗"
+                                    putStrLn "║       Put pronadjen!     ║"
+                                    putStrLn "╚══════════════════════════╝"
+                                    putStrLn $ "Duzina puta: " ++ show (length path) ++ " koraka (" ++ otherAlgorithmName ++ ")"
+                                    putStrLn "\nRješenje:"
+                                    putStrLn $ renderSolution selectedMaze path
+                            Nothing -> putStrLn "Nema rjesenja ni sa drugim algoritmom!"
 
-    -- Pause so that when running the .exe by double-clicking the console
-    -- window doesn't close immediately. User must press Enter to exit.
-    putStrLn "\nPritisnite Enter za izlaz..."
-    _ <- getLine
-    return ()
+            putStrLn "\nPonovo? (unesite 0 za izlaz, bilo sta drugo za nastavak)"
+            choice <- getLine
+            case choice of
+                    "0" -> putStrLn "Izlaz iz programa. Dovidjenja!"
+                    _   -> loop
+    loop
 
 -- Funkcija za prikaz različitih lavirinata
 showAllMazes :: IO ()
